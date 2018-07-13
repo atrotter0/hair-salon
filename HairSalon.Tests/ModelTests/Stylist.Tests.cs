@@ -27,5 +27,13 @@ namespace HairSalon.Tests
             Assert.AreEqual("Ygritte", stylist.Name);
             Assert.AreEqual(2, stylist.Id);
         }
+
+        [TestMethod]
+        public void Equals_ReturnsTrueIfPropertiesAreTheSame_True()
+        {
+            Stylist stylist = new Stylist("Min");
+            Stylist stylistTwo = new Stylist("Min");
+            Assert.AreEqual(stylist, stylistTwo);
+        }
     }
 }
