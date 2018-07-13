@@ -52,5 +52,39 @@ namespace HairSalon.Tests
             List<Stylist> expectedList = new List<Stylist>() { stylist };
             CollectionAssert.AreEqual(expectedList, allStylists);
         }
+
+        [TestMethod]
+        public void Update_UpdatesColumnInDatabase_StylistList()
+        {
+            Stylist stylist = new Stylist("Elayne", 1);
+            stylist.Save();
+            stylist.Name = "Egwene";
+            stylist.Update();
+            List<Stylist> allStylists = Stylist.GetAll();
+            List<Stylist> expectedList = new List<Stylist>{ stylist };
+            CollectionAssert.AreEqual(expectedList, allStylists);
+        }
+
+        [TestMethod]
+        public void Delete_DeletesRecordFromDatabase_StylistList()
+        {
+            Stylist stylist = new Stylist("Elayne", 1);
+            Stylist stylist2 = new Stylist("Egwene", 2);
+            stylist.Save();
+            stylist2.Save();
+            stylist.Delete();
+            List<Stylist> allStylists = Stylist.GetAll();
+            List<Stylist> expectedList = new List<Stylist>{ stylist2 };
+            CollectionAssert.AreEqual(expectedList, allStylists);
+        }
+
+        [TestMethod]
+        public void Find_FindsStylistInDatabaseById_Stylist()
+        {
+            Stylist stylist = new Stylist("Shiva", 1);
+            stylist.Save();
+            Stylist foundStylist = Stylist.Find(stylist.Id);
+            Assert.AreEqual(stylist, foundStylist);
+        }
     }
 }
