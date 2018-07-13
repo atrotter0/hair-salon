@@ -2,6 +2,16 @@
   margin-bottom: 40px;
 }
 
+a {
+  color: #343a40;
+  transition: 1s;
+}
+
+a:hover {
+  color: #20c2dc;
+  transition: 1s;
+}
+
 .navbar a {
   transition: 0.5s;
 }
@@ -22,7 +32,8 @@
 }
 
 .top-button-box {
-  margin: 30px 0px 30px 0px;
+  margin: 30px auto;
+  text-align: center;
 }
 
 .card, .card-box-shadow {

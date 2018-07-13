@@ -1,0 +1,19 @@
+@{
+  Layout = "_Layout";
+}
+
+<div class='container'>
+    <h1 class='center'>Clients</h1>
+    <div class='top-button-box'>
+        <a href='/clients/new' class='btn btn-lg btn-info'>Add Client</a>
+    </div>
+    @foreach (var client in Model)
+    {
+        <div class='card'>
+            <img class='card-img-top stylist-image' src='img/anon-person.png' alt='Card image cap'>
+            <div class='card-body'>
+                <h5 class='card-title center'><a href='/clients/@client.Id'>@client.Name</a></h5>
+            </div>
+        </div>
+    }
+</div>
