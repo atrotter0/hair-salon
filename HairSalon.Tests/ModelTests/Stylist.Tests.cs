@@ -35,5 +35,12 @@ namespace HairSalon.Tests
             Stylist stylistTwo = new Stylist("Min");
             Assert.AreEqual(stylist, stylistTwo);
         }
+
+        [TestMethod]
+        public void GetAll_DbStartsEmpty_0()
+        {
+            int result = Stylist.GetAll().Count;
+            Assert.AreEqual(0, result);
+        }
     }
 }
