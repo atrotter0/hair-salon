@@ -112,8 +112,8 @@ namespace HairSalon.Models
             cmd.CommandText = @"DELETE FROM stylists WHERE id = @StylistId;";
             cmd.Parameters.AddWithValue("@StylistId", this.Id);
             cmd.ExecuteNonQuery();
-            //cmd.CommandText = @"DELETE FROM clients WHERE stylist_id = @StylistId;";
-            //cmd.ExecuteNonQuery();
+            cmd.CommandText = @"UPDATE clients SET stylist_Id = 0 WHERE stylist_id = @StylistId;";
+            cmd.ExecuteNonQuery();
             conn.Close();
 
             if (conn != null)

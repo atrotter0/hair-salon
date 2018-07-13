@@ -66,16 +66,19 @@ namespace HairSalon.Tests
         }
 
         [TestMethod]
-        public void Delete_DeletesRecordFromDatabase_StylistList()
+        public void Delete_DeletesRecordFromDatabaseAndSetsClientId_StylistList()
         {
             Stylist stylist = new Stylist("Elayne", 1);
             Stylist stylist2 = new Stylist("Egwene", 2);
+            Client client = new Client("Min", "555-555-5555", "test@test.com", stylist.Id, 1);
             stylist.Save();
             stylist2.Save();
             stylist.Delete();
             List<Stylist> allStylists = Stylist.GetAll();
             List<Stylist> expectedList = new List<Stylist>{ stylist2 };
+            client = Client.Find(client.Id);
             CollectionAssert.AreEqual(expectedList, allStylists);
+            Assert.AreEqual(0, client.StylistId);
         }
 
         [TestMethod]
