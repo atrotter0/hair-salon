@@ -21,9 +21,11 @@ namespace HairSalon.Controllers
         }
 
         [HttpPost("/stylists")]
-        public ActionResult Create()
+        public ActionResult Create(string name)
         {
-            return View();
+            Stylist stylist = new Stylist(name);
+            stylist.Save();
+            return View("Index");
         }
     }
 }
