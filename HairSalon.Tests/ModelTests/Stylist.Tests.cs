@@ -6,11 +6,11 @@ using HairSalon.Models;
 namespace HairSalon.Tests
 {
     [TestClass]
-    public class StylistTest
+    public class StylistTest : IDisposable
     {
         public void Dispose()
         {
-            //Stylist.DeleteAll();
+            Stylist.DeleteAll();
         }
 
         public StylistTest()
@@ -41,6 +41,16 @@ namespace HairSalon.Tests
         {
             int result = Stylist.GetAll().Count;
             Assert.AreEqual(0, result);
+        }
+
+        [TestMethod]
+        public void Save_SavesStylistToDb_True()
+        {
+            Stylist stylist = new Stylist("Ygritte");
+            stylist.Save();
+            List<Stylist> allStylists = Stylist.GetAll();
+            List<Stylist> expectedList = new List<Stylist>() { stylist };
+            CollectionAssert.AreEqual(expectedList, allStylists);
         }
     }
 }
