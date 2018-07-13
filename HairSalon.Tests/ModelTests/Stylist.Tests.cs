@@ -1,12 +1,12 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
-using HairSalonProject.Models;
+using HairSalon.Models;
 
-namespace HairSalonProject.Tests
+namespace HairSalon.Tests
 {
     [TestClass]
-    public class HairSalonTest
+    public class StylistTest
     {
 
     }

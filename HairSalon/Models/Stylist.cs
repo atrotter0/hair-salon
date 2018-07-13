@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 using MySql.Data.MySqlClient;
-using HairSalonProject;
+using HairSalon;
 
-namespace HairSalonProject.Models
+namespace HairSalon.Models
 {
-    public class HairSalon
+    public class Stylist
     {
 
     }
