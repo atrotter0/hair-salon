@@ -2,13 +2,61 @@
   margin-bottom: 40px;
 }
 
+.navbar a {
+  transition: 0.5s;
+}
+.navbar a:hover {
+  transition: 0.5s;
+}
+
+.btn {
+  transition: 0.5s;
+}
+
+.btn:hover {
+  transition: 0.5s;
+}
+
+.center {
+  text-align: center;
+}
+
 .top-button-box {
   margin: 30px 0px 30px 0px;
+}
+
+.card, .card-box-shadow {
+  width: 80%;
+  margin: 40px auto;
+  max-width: 600px;
+  transition: 0.5s;
+}
+
+.card-box-shadow:hover {
+  box-shadow: 2px 2px 10px #4444446e;
+  transition: 0.5s;
+}
+
+.card a {
+  text-decoration: none;
+  transition: 0.5s;
+}
+
+.card a:hover {
+  text-decoration: none;
+  transition: 0.5s;
 }
 
 .card-button-box {
   float: right;
   margin-top: -40px;
+}
+
+.stylist-image {
+  width: 50%;
+  max-width: 200px;
+  margin: 20px auto;
+  display: block;
 }
 
 #delete-form {

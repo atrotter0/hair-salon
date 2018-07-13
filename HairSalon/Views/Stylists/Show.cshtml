@@ -1,0 +1,16 @@
+@{
+  Layout = "_Layout";
+}
+
+<div class='container'>
+    <h1 class='center'>@Model.Name</h1>
+    <div class='card'>
+        <div class='card-body'>
+            <p class='card-text'>Add description here</p>
+            <a href='/stylists/@Model.Id/edit' class='btn btn-primary'>Edit</a>
+            <form id='delete-form' action='/stylists/@Model.Id/delete' method='POST'>
+                <button type='submit' class='btn btn-danger'>Delete</button>
+            </form>
+        </div>
+    </div>
+</div>
