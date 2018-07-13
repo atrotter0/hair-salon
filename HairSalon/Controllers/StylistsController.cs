@@ -7,7 +7,7 @@ namespace HairSalon.Controllers
 {
     public class StylistsController : Controller
     {
-        [HttpGet("/")]
+        [HttpGet("/stylists")]
         public ActionResult Index()
         {
             List<Stylist> allStylists = Stylist.GetAll();

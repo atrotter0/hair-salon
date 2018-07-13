@@ -1,0 +1,16 @@
+.navbar {
+  margin-bottom: 40px;
+}
+
+.top-button-box {
+  margin: 30px 0px 30px 0px;
+}
+
+.card-button-box {
+  float: right;
+  margin-top: -40px;
+}
+
+#delete-form {
+  display: inline-block;
+}

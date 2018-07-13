@@ -3,13 +3,14 @@
 }
 
 <div class='container'>
+    <h1>Stylists</h1>
     <div class='top-button-box'>
         <a href='/stylists/new' class='btn btn-lg btn-info'>Add Stylist</a>
     </div>
     @foreach (var stylist in Model)
     {
         <div class='card'>
-            <img class='card-img-top' src='...'' alt='Card image cap'>
+            <img class='card-img-top' src='...' alt='Card image cap'>
             <div class='card-body'>
                 <h5 class='card-title'><a href='/stylists/@stylist.Id'>@stylist.Name</h5>
             </div>
