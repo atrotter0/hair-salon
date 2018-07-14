@@ -1,6 +1,6 @@
 # Hair Salon
 
-#### Epicodus C# exercise, 07.13.18
+#### Epicodus C# independent project, 07.13.18
 
 #### By Abel Trotter
 
