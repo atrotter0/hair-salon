@@ -179,10 +179,10 @@ namespace HairSalon.Models
             MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
             while(rdr.Read())
             {
-                int StylistId = rdr.GetInt32(0);
-                string StylistName = rdr.GetString(1);
-                Stylist newStylist = new Stylist(StylistName);
-                newStylist.Id = StylistId;
+                int stylistId = rdr.GetInt32(0);
+                string stylistName = rdr.GetString(1);
+                Stylist newStylist = new Stylist(stylistName);
+                newStylist.Id = stylistId;
                 allStylists.Add(newStylist);
             }
             conn.Close();
@@ -192,6 +192,31 @@ namespace HairSalon.Models
                 conn.Dispose();
             }
             return allStylists;
+        }
+
+
+        public Stylist GetStylist()
+        {
+            Stylist stylist = new Stylist("");
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"SELECT * FROM stylists WHERE id = " + this.StylistId + ";";
+            MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
+            while(rdr.Read())
+            {
+                int stylistId = rdr.GetInt32(0);
+                string stylistName = rdr.GetString(1);
+                stylist.Name = stylistName;
+                stylist.Id = stylistId;
+            }
+            conn.Close();
+
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
+            return stylist;
         }
     }
 }

@@ -59,8 +59,7 @@ a:hover {
 }
 
 .card-button-box {
-  float: right;
-  margin-top: -40px;
+  margin: 50px auto 0px auto;
 }
 
 .stylist-image {

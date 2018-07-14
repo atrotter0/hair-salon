@@ -3,14 +3,22 @@
 }
 
 <div class='container'>
-    <h1 class='center'>@Model.Name</h1>
     <div class='card'>
+        <h1 class='card-title center'>@Model.Name</h1>
         <div class='card-body'>
-            <p class='card-text'>Add description here</p>
-            <a href='/stylists/@Model.Id/edit' class='btn btn-info'>Edit</a>
-            <form id='delete-form' action='/stylists/@Model.Id/delete' method='POST'>
-                <button type='submit' class='btn btn-secondary'>Delete</button>
-            </form>
+            <h5>Clients</h5>
+            <ul>
+            @foreach (var client in Model.GetClientsForStylist())
+            {
+                <li class='card-text'><a href='/clients/@client.Id'>@client.Name</a></li>
+            }
+            </ul>
+            <div class='card-button-box'>
+                <a href='/stylists/@Model.Id/edit' class='btn btn-info'>Edit</a>
+                <form id='delete-form' action='/stylists/@Model.Id/delete' method='POST'>
+                    <button type='submit' class='btn btn-secondary'>Delete</button>
+                </form>
+            </div>
         </div>
     </div>
 </div>
