@@ -91,5 +91,13 @@ namespace HairSalon.Tests
             ActionResult Update = controller.Update(1, "John Doe");
             Assert.IsInstanceOfType(Update, typeof(RedirectToActionResult));
         }
+
+        [TestMethod]
+        public void Delete_ReturnsCorrectView_True()
+        {
+            StylistsController controller = new StylistsController();
+            ActionResult Delete = controller.Delete(1);
+            Assert.IsInstanceOfType(Delete, typeof(RedirectToActionResult));
+        }
     }
 }
