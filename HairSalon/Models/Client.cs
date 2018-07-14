@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using MySql.Data.MySqlClient;
+using Npgsql;
 using HairSalon;
 
 namespace HairSalon.Models
@@ -41,11 +42,11 @@ namespace HairSalon.Models
         public static List<Client> GetAll()
         {
             List<Client> allClients = new List<Client>() {};
-            MySqlConnection conn = DB.Connection();
+            NpgsqlConnection conn = DB.Connection();
             conn.Open();
-            MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+            NpgsqlCommand cmd = conn.CreateCommand() as NpgsqlCommand;
             cmd.CommandText = @"SELECT * FROM clients;";
-            MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
+            var rdr = cmd.ExecuteReader();
             while(rdr.Read())
             {
                 int id = rdr.GetInt32(0);
@@ -67,9 +68,9 @@ namespace HairSalon.Models
 
         public static void DeleteAll()
         {
-            MySqlConnection conn = DB.Connection();
+            NpgsqlConnection conn = DB.Connection();
             conn.Open();
-            var cmd = conn.CreateCommand() as MySqlCommand;
+            var cmd = conn.CreateCommand() as NpgsqlCommand;
             cmd.CommandText = @"DELETE FROM clients;";
             cmd.ExecuteNonQuery();
             conn.Close();
@@ -82,16 +83,24 @@ namespace HairSalon.Models
 
         public void Save()
         {
-            MySqlConnection conn = DB.Connection();
+            int clientId = 0;
+            NpgsqlConnection conn = DB.Connection();
             conn.Open();
-            var cmd = conn.CreateCommand() as MySqlCommand;
+            var cmd = conn.CreateCommand() as NpgsqlCommand;
             cmd.CommandText = @"INSERT INTO Clients (name, phone, email, stylist_id) VALUES (@ClientName, @ClientPhone, @ClientEmail, @StylistId);";
             cmd.Parameters.AddWithValue("@ClientName", this.Name);
             cmd.Parameters.AddWithValue("@ClientPhone", this.Phone);
             cmd.Parameters.AddWithValue("@ClientEmail", this.Email);
             cmd.Parameters.AddWithValue("@StylistId", this.StylistId);
             cmd.ExecuteNonQuery();
-            this.Id = (int) cmd.LastInsertedId;
+
+            cmd.CommandText = @"SELECT * FROM clients ORDER BY id DESC LIMIT 1;";
+            var rdr = cmd.ExecuteReader();
+            while(rdr.Read())
+            {
+                clientId = rdr.GetInt32(0);
+            }
+            this.Id = (int) clientId;
             conn.Close();
 
             if (conn != null)
@@ -102,9 +111,9 @@ namespace HairSalon.Models
 
         public void Update()
         {
-            MySqlConnection conn = DB.Connection();
+            NpgsqlConnection conn = DB.Connection();
             conn.Open();
-            var cmd = conn.CreateCommand() as MySqlCommand;
+            var cmd = conn.CreateCommand() as NpgsqlCommand;
             cmd.CommandText = @"UPDATE clients SET name = @ClientName, phone = @ClientPhone, email = @ClientEmail, stylist_id = @StylistId WHERE id = @ClientId;";
             cmd.Parameters.AddWithValue("@ClientName", this.Name);
             cmd.Parameters.AddWithValue("@ClientPhone", this.Phone);
@@ -122,9 +131,9 @@ namespace HairSalon.Models
 
         public void Delete()
         {
-            MySqlConnection conn = DB.Connection();
+            NpgsqlConnection conn = DB.Connection();
             conn.Open();
-            var cmd = conn.CreateCommand() as MySqlCommand;
+            var cmd = conn.CreateCommand() as NpgsqlCommand;
             cmd.CommandText = @"DELETE FROM clients WHERE id = @ClientId;";
             cmd.Parameters.AddWithValue("@ClientId", this.Id);
             cmd.ExecuteNonQuery();
@@ -138,13 +147,13 @@ namespace HairSalon.Models
 
         public static Client Find(int id)
         {
-            MySqlConnection conn = DB.Connection();
+            NpgsqlConnection conn = DB.Connection();
             conn.Open();
 
-            var cmd = conn.CreateCommand() as MySqlCommand;
+            var cmd = conn.CreateCommand() as NpgsqlCommand;
             cmd.CommandText = @"SELECT * FROM clients WHERE id = @searchId;";
             cmd.Parameters.AddWithValue("@searchId", id);
-            var rdr = cmd.ExecuteReader() as MySqlDataReader;
+            var rdr = cmd.ExecuteReader();
             int clientId = 0;
             string name = "";
             string phone = "";
@@ -172,11 +181,12 @@ namespace HairSalon.Models
         public List<Stylist> GetAllStylists()
         {
             List<Stylist> allStylists = new List<Stylist>() {};
-            MySqlConnection conn = DB.Connection();
+            NpgsqlConnection conn = DB.Connection();
             conn.Open();
-            MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+            NpgsqlCommand cmd = conn.CreateCommand() as NpgsqlCommand;
             cmd.CommandText = @"SELECT * FROM stylists;";
-            MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
+            var rdr = cmd.ExecuteReader();
+
             while(rdr.Read())
             {
                 int stylistId = rdr.GetInt32(0);
@@ -198,11 +208,12 @@ namespace HairSalon.Models
         public Stylist GetStylist()
         {
             Stylist stylist = new Stylist("");
-            MySqlConnection conn = DB.Connection();
+            NpgsqlConnection conn = DB.Connection();
             conn.Open();
-            MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+            NpgsqlCommand cmd = conn.CreateCommand() as NpgsqlCommand;
             cmd.CommandText = @"SELECT * FROM stylists WHERE id = " + this.StylistId + ";";
-            MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
+            var rdr = cmd.ExecuteReader();
+
             while(rdr.Read())
             {
                 int stylistId = rdr.GetInt32(0);
