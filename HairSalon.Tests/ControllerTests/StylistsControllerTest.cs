@@ -49,7 +49,7 @@ namespace HairSalon.Tests
         {
             StylistsController controller = new StylistsController();
             ActionResult Create = controller.Create("Mary Jane");
-            Assert.IsInstanceOfType(Create, typeof(ViewResult));
+            Assert.IsInstanceOfType(Create, typeof(RedirectToActionResult));
         }
     }
 }
