@@ -101,7 +101,7 @@ namespace HairSalon.Tests
             client2.Save();
             List<Client> listOfClients = stylist.GetClientsForStylist();
             List<Client> expectedList = Client.GetAll();
-            CollectionAssert.AreEqual(expectedList, stylist.GetClientsForStylist());
+            CollectionAssert.AreEqual(expectedList, listOfClients);
         }
     }
 }
