@@ -8,7 +8,12 @@ namespace HairSalon
 {
     public static class DBConfiguration
     {
-        public static string ConnectionString = "server=localhost;user id=root;password=root;port=8889;database=abel_trotter;";
+        public static string ConnectionString = "User ID=" + System.Environment.GetEnvironmentVariable("DATABASE_USER") +
+                                                ";Password=" + System.Environment.GetEnvironmentVariable("DATABASE_PASSWORD") +
+                                                ";Host=" + System.Environment.GetEnvironmentVariable("DATABASE_HOST") +
+                                                ";Port=" + System.Environment.GetEnvironmentVariable("DATABASE_PORT") +
+                                                ";Database=" + System.Environment.GetEnvironmentVariable("DATABASE_NAME") +
+                                                ";Pooling=true;Use SSL Stream=True;SSL Mode=Require;TrustServerCertificate=True;";
     }
 
     public class Startup
