@@ -83,5 +83,13 @@ namespace HairSalon.Tests
             var result = Edit.ViewData.Model;
             Assert.IsInstanceOfType(result, typeof(Stylist));
         }
+
+        [TestMethod]
+        public void Update_ReturnsCorrectView_True()
+        {
+            StylistsController controller = new StylistsController();
+            ActionResult Update = controller.Update(1, "John Doe");
+            Assert.IsInstanceOfType(Update, typeof(RedirectToActionResult));
+        }
     }
 }
