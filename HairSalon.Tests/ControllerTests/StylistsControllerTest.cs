@@ -79,7 +79,7 @@ namespace HairSalon.Tests
         [TestMethod]
         public void Edit_HasCorrectModelType_Account()
         {
-            ViewResult Edit = new StylistsController().Show(0) as ViewResult;
+            ViewResult Edit = new StylistsController().Edit(0) as ViewResult;
             var result = Edit.ViewData.Model;
             Assert.IsInstanceOfType(result, typeof(Stylist));
         }
