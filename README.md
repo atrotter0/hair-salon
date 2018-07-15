@@ -46,7 +46,7 @@ A .NET web app that allows the owner of a salon to add stylists and the stylist'
 ## Links
 
 * [Github Repo] (https://github.com/atrotter0/hair-salon)
-* [Heroku App] (https://three-sixty-studios.herokuapp.com/)
+* [Heroku App] (https://three-sixty-studios.herokuapp.com/) (Using Postgres and Npgsql package)
 
 ## License
 
