@@ -1,3 +1,6 @@
+@using HairSalon.Models
+@model Stylist
+
 @{
   Layout = "_Layout";
 }
@@ -6,8 +9,9 @@
     <h1>Add a Stylist</h1>
     <form action='/stylists' method='POST'>
         <div class='form-group'>
-            <label for='name'>Name</label>
-            <input type='text' name='name' class='form-control' required>
+            <label asp-for='Name'>Name</label>
+            <input type='text' asp-for='Name' class='form-control' required>
+            <span asp-validation-for='Name' class="text-danger"></span>
         </div>
         <button type='submit' class='btn btn-info'>Create Stylist</button>
     </form>
