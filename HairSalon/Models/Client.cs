@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using MySql.Data.MySqlClient;
 using Npgsql;
 using HairSalon;
@@ -9,9 +10,20 @@ namespace HairSalon.Models
     public class Client
     {
         public int Id { get; set; }
+
+        [Required]
+        [StringLength(30)]
         public string Name { get; set; }
+
+        [Required]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Entered phone format is not valid.")]
         public string Phone { get; set; }
+
+        [Required]
+        [EmailAddress]
         public string Email { get; set; }
+
+        [Required]
         public int StylistId { get; set; }
 
         public Client (string name, string phone, string email, int stylistId, int id = 0)

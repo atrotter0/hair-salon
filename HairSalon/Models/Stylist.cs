@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using MySql.Data.MySqlClient;
 using Npgsql;
 using HairSalon;
@@ -9,6 +10,9 @@ namespace HairSalon.Models
     public class Stylist
     {
         public int Id { get; set; }
+
+        [Required]
+        [StringLength(30)]
         public string Name { get; set; }
 
         public Stylist (string name, int id = 0)
