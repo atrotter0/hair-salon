@@ -43,6 +43,8 @@ A .NET web app that allows the owner of a salon to add stylists and the stylist'
 * MySql
 * Bootstrap 3.3.7
 * jQuery 3.3.1
+* jQuery Validate 1.6.0
+* jQuery Validation Unobtrusive 3.2.6
 
 ## Links
 
