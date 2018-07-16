@@ -45,14 +45,6 @@ namespace HairSalon.Tests
         }
 
         [TestMethod]
-        public void New_HasCorrectModelType_Account()
-        {
-            ViewResult New = new ClientsController().New() as ViewResult;
-            var result = New.ViewData.Model;
-            Assert.IsInstanceOfType(result, typeof(List<Stylist>));
-        }
-
-        [TestMethod]
         public void Create_ReturnsCorrectView_True()
         {
             ClientsController controller = new ClientsController();
