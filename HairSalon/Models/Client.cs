@@ -53,10 +53,8 @@ namespace HairSalon.Models
         public static List<Client> GetAll()
         {
             List<Client> allClients = new List<Client>() {};
-            MySqlConnection conn = DB.Connection();
-            conn.Open();
-            MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"SELECT * FROM clients;";
+            DB.CreateConnectionAndCommand();
+            DB.SqlHelper["cmd"].CommandText = @"SELECT * FROM clients;";
             MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
             while(rdr.Read())
             {
@@ -68,12 +66,7 @@ namespace HairSalon.Models
                 Client newClient = new Client(name, phone, email, stylistId, id);
                 allClients.Add(newClient);
             }
-            conn.Close();
-
-            if (conn != null)
-            {
-                conn.Dispose();
-            }
+            DB.CheckAndCloseConnection();
             return allClients;
         }
 
