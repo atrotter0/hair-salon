@@ -1,14 +1,15 @@
 using System;
 using MySql.Data.MySqlClient;
+using Npgsql;
 using HairSalon;
 
 namespace HairSalon.Models
 {
     public class DB
     {
-        public static MySqlConnection Connection()
+        public static NpgsqlConnection Connection()
         {
-            MySqlConnection conn = new MySqlConnection(DBConfiguration.ConnectionString);
+            NpgsqlConnection conn = new NpgsqlConnection(DBConfiguration.ConnectionString);
             return conn;
         }
     }
