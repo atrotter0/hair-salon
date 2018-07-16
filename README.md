@@ -39,7 +39,8 @@ A .NET web app that allows the owner of a salon to add stylists and the stylist'
 ## Technologies Used
 
 * .Net Core 1.1.4
-* MySQL
+* MAMP 4.5
+* MySql
 * Bootstrap 3.3.7
 * jQuery 3.3.1
 
